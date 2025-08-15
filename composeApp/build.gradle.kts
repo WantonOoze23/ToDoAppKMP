@@ -65,8 +65,9 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.app)
+            implementation(projects.data)
 
-            api(libs.koin.core)
+            implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.lifecycle.viewmodel)
@@ -89,6 +90,10 @@ kotlin {
             implementation(libs.kotlinx.coroutinesSwing)
         }
     }
+}
+
+configurations.all {
+    exclude(group = "com.intellij", module = "annotations")
 }
 
 android {

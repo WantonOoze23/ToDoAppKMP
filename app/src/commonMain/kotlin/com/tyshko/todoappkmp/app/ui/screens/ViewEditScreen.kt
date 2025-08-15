@@ -1,6 +1,5 @@
 package com.tyshko.todoapp.ui.screens
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -18,17 +17,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.*
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.tyshko.todoapp.vm.mvi.ToDoEditViewModel
 import com.tyshko.todoapp.vm.mvi.ToDoIntent
 
-@SuppressLint("RememberReturnType")
 @Composable
 fun ViewEditScreen(
     modifier: Modifier = Modifier,
     toDoId: Long?,
-    viewModel: ToDoEditViewModel = hiltViewModel(),
+    viewModel: ToDoEditViewModel,
     navController: NavController
 ) {
     val state by viewModel.toDoState.collectAsState()

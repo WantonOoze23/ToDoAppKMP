@@ -43,7 +43,8 @@ fun ToDoNavigation(
             val todoID = backStackEntry.arguments?.getString("todoId")?.toLongOrNull()
             ViewEditScreen(
                 toDoId = todoID,
-                navController = navController
+                navController = navController,
+                viewModel = toDoEditViewModel
             )
         }
     }

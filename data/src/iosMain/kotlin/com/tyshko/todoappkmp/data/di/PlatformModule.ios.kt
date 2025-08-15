@@ -2,6 +2,6 @@ package com.tyshko.todoappkmp.data.di
 
 import org.koin.core.module.Module
 
-actual fun dataModule(): Module {
+actual fun platformModule(): Module {
     TODO("Not yet implemented")
 }
