@@ -38,16 +38,32 @@ kotlin {
         val desktopMain by getting
 
         androidMain.dependencies {
-
+            implementation(compose.preview)
+            implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+            implementation(projects.data)
+            implementation(projects.domain)
 
+            api(libs.navigation.compose)
+            implementation(libs.bundles.koin.compose)
+            implementation(libs.koin.core)
+
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
+            implementation(libs.androidx.lifecycle.viewmodelCompose)
+            implementation(libs.androidx.lifecycle.runtimeCompose)
         }
         commonTest.dependencies {
-
+            implementation(libs.kotlin.test)
         }
         desktopMain.dependencies {
-
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutinesSwing)
         }
 
     }

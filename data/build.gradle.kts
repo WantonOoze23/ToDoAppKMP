@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.implementation
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -6,6 +7,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+
+    alias(libs.plugins.google.ksp)
 }
 
 kotlin {
@@ -19,7 +22,7 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "Data"
@@ -38,16 +41,47 @@ kotlin {
         val desktopMain by getting
 
         androidMain.dependencies {
+            implementation(libs.ktor.ktor.client.core)
+            implementation(libs.ktor.ktor.client.cio)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+
+            implementation(libs.kotlinx.coroutines.core)
+            api(libs.androidx.room.compiler)
+            implementation(libs.room.runtime)
+            implementation(libs.androidx.room.ktx)
 
         }
         commonMain.dependencies {
+            implementation(projects.domain)
 
+            implementation(libs.koin.core)
+            implementation(compose.runtime)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.ktor.client.core)
+            implementation(libs.ktor.ktor.client.cio)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.kotlinx.coroutines.core)
+
+            implementation(libs.room.runtime)
         }
         desktopMain.dependencies {
-            
+            implementation(libs.ktor.ktor.client.core)
+            implementation(libs.ktor.ktor.client.cio)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.kotlinx.coroutines.core)
+
+            implementation(libs.room.runtime)
         }
         wasmJsMain.dependencies {
-
+            implementation(libs.ktor.ktor.client.core)
+            implementation(libs.ktor.ktor.client.cio)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.kotlinx.coroutines.core)
         }
 
     }
