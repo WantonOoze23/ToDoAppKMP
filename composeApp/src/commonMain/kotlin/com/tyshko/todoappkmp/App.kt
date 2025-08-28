@@ -17,7 +17,7 @@ fun App(
 ) {
     KoinApplication(
         application = {
-            modules(platformModule(), appModule, dataModule)
+            modules(platformModule, appModule, dataModule)
         }
     ){
         MaterialTheme {

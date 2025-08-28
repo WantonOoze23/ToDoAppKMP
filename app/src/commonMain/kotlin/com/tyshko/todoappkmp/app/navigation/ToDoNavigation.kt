@@ -39,7 +39,7 @@ fun ToDoNavigation(
             )
         }
         composable("todo?todoId={todoId}"){ backStackEntry ->
-            val toDoEditViewModel = koinViewModel<ToDoEditViewModel>(parametersOf(backStackEntry.savedStateHandle) as Qualifier?)
+            val toDoEditViewModel = koinViewModel<ToDoEditViewModel>()
             val todoID = backStackEntry.arguments?.getString("todoId")?.toLongOrNull()
             ViewEditScreen(
                 toDoId = todoID,

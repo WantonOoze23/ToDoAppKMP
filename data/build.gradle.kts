@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
 
     alias(libs.plugins.google.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -46,8 +47,9 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
 
+            implementation(libs.ktor.client.android)
+
             implementation(libs.kotlinx.coroutines.core)
-            api(libs.androidx.room.compiler)
             implementation(libs.room.runtime)
             implementation(libs.androidx.room.ktx)
 
@@ -109,4 +111,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    ksp(libs.androidx.room.compiler)
 }
