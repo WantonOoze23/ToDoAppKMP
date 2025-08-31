@@ -67,7 +67,11 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.coroutines.core)
 
+            implementation(libs.kotlinx.coroutines.core)
             implementation(libs.room.runtime)
+            implementation(libs.androidx.room.ktx)
+
+            implementation(libs.sqlite.bundled)
         }
         desktopMain.dependencies {
             implementation(libs.ktor.ktor.client.core)

@@ -1,18 +1,16 @@
 package com.tyshko.todoappkmp.data.di
 
 import android.content.Context
-import androidx.room.Room
+import androidx.room.Room.databaseBuilder
 import com.tyshko.data.local.ToDoDataBase
 import com.tyshko.domain.repository.ToDoRepository
 import com.tyshko.todoappkmp.data.network.NetworkApi
 import com.tyshko.todoappkmp.data.repository.ToDoRepositoryImpl
 import org.koin.core.module.Module
-import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
 actual fun platformModule() : Module = module {
-
     single{
         provideDatabase(get())
     }.bind<ToDoDataBase>()
@@ -21,7 +19,7 @@ actual fun platformModule() : Module = module {
     single<ToDoRepository> { ToDoRepositoryImpl(get(), get()) }
 }
 fun provideDatabase(context: Context) : ToDoDataBase{
-    return Room.databaseBuilder(
+    return databaseBuilder(
         context.applicationContext, ToDoDataBase::class.java, "todo_db"
     ).build()
 }
