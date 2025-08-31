@@ -77,6 +77,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
 
             implementation(libs.room.runtime)
+            implementation(libs.androidx.sqlite.bundled.jvm)
         }
         wasmJsMain.dependencies {
             implementation(libs.ktor.ktor.client.core)

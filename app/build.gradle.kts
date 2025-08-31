@@ -40,6 +40,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            api(libs.navigation.compose)
         }
         commonMain.dependencies {
             implementation(projects.data)
@@ -51,6 +52,8 @@ kotlin {
 
             implementation(compose.runtime)
             implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.materialIconsExtended)
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
@@ -64,6 +67,10 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+            api(libs.navigation.compose)
+        }
+        wasmJsMain.dependencies {
+            api(libs.navigation.compose)
         }
 
     }

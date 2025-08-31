@@ -24,18 +24,11 @@ import com.tyshko.todoapp.vm.mvi.ToDoIntent
 @Composable
 fun ViewEditScreen(
     modifier: Modifier = Modifier,
-    toDoId: Long?,
     viewModel: ToDoEditViewModel,
     navController: NavController
 ) {
     val state by viewModel.toDoState.collectAsState()
     val showDialog = remember { mutableStateOf(false) }
-
-    LaunchedEffect(toDoId) {
-        toDoId?.let {
-            viewModel.onIntent(ToDoIntent.isToDoGet(it))
-        }
-    }
 
     if (showDialog.value) {
         AlertDialog(

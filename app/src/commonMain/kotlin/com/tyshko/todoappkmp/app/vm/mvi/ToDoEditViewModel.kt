@@ -1,5 +1,6 @@
 package com.tyshko.todoapp.vm.mvi
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tyshko.domain.model.ToDoModel
@@ -11,11 +12,19 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class ToDoEditViewModel(
-    private val repository: ToDoRepository
+    private val repository: ToDoRepository,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _todoState = MutableStateFlow(ToDoState())
     val toDoState: StateFlow<ToDoState> = _todoState.asStateFlow()
+
+    init {
+        val todoId: Long? = savedStateHandle.get<String>("todoId")?.toLongOrNull()
+        todoId?.let {
+            onIntent(ToDoIntent.isToDoGet(it))
+        }
+    }
 
     fun onIntent(intent: ToDoIntent){
         when(intent){
@@ -72,5 +81,4 @@ class ToDoEditViewModel(
             }
         }
     }
-
 }
