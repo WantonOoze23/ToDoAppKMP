@@ -1,6 +1,7 @@
 package com.tyshko.todoappkmp.data.di
 
 import androidx.room.Room.databaseBuilder
+import androidx.room.RoomDatabase
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.tyshko.data.local.ToDoDataBase
 import com.tyshko.domain.repository.ToDoRepository
@@ -17,21 +18,24 @@ import platform.Foundation.NSFileManager
 import platform.Foundation.NSUserDomainMask
 
 actual fun platformModule(): Module = module{
-    single{
-        provideDatabase()
-    }.bind<ToDoDataBase>()
+    single { provideDatabase(getDatabaseBuilder()) }.bind<ToDoDataBase>()
     single { get<ToDoDataBase>().toDoDao() }
     single { NetworkApi() }
     single<ToDoRepository> { ToDoRepositoryImpl(get(), get()) }
 }
 
-fun provideDatabase() : ToDoDataBase{
+fun provideDatabase(builder: RoomDatabase.Builder<ToDoDataBase>): ToDoDataBase {
+    return builder
+        .setDriver(BundledSQLiteDriver())
+        .setQueryCoroutineContext(Dispatchers.IO)
+        .build()
+}
+
+fun getDatabaseBuilder(): RoomDatabase.Builder<ToDoDataBase> {
     val dbFilePath = documentDirectory() + "/todo_db"
     return databaseBuilder<ToDoDataBase>(
-        name = dbFilePath,
-        factory = { ToDoDataBase::class.instantiateImpl() }
-    ).setDriver(BundledSQLiteDriver())
-        .build()
+        name = dbFilePath
+    )
 }
 
 @OptIn(ExperimentalForeignApi::class)
