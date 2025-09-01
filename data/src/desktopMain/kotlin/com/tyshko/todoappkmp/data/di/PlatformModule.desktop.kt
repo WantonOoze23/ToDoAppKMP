@@ -1,6 +1,7 @@
 package com.tyshko.todoappkmp.data.di
 
 import androidx.room.Room
+import androidx.room.Room.databaseBuilder
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.tyshko.data.local.ToDoDataBase
 import com.tyshko.domain.repository.ToDoRepository
@@ -21,7 +22,7 @@ actual fun platformModule() : Module = module {
     single { get<ToDoDataBase>().toDoDao() }
 }
 fun provideDatabase() : ToDoDataBase {
-    return Room.databaseBuilder<ToDoDataBase>(
+    return databaseBuilder<ToDoDataBase>(
         "todo_db"
     ).setDriver(BundledSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)

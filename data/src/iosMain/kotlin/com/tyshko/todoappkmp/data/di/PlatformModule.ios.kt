@@ -26,8 +26,8 @@ actual fun platformModule(): Module = module{
 }
 
 fun provideDatabase() : ToDoDataBase{
-    val dbFilePath = documentDirectory() + "/my_room.db"
-    return databaseBuilder(
+    val dbFilePath = documentDirectory() + "/todo_db"
+    return databaseBuilder<ToDoDataBase>(
         name = dbFilePath,
         factory = { ToDoDataBase::class.instantiateImpl() }
     ).setDriver(BundledSQLiteDriver())
