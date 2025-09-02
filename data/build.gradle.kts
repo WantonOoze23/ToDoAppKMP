@@ -128,4 +128,5 @@ dependencies {
     add("kspIosX64", libs.androidx.room.compiler)
     add("kspIosArm64", libs.androidx.room.compiler)
     add("kspWasmJs", libs.androidx.room.compiler)
+    add("kspDesktop", libs.androidx.room.compiler)
 }
