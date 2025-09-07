@@ -1,4 +1,3 @@
-import org.gradle.kotlin.dsl.implementation
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -42,11 +41,6 @@ kotlin {
         val desktopMain by getting
 
         androidMain.dependencies {
-            implementation(libs.ktor.ktor.client.core)
-            implementation(libs.ktor.ktor.client.cio)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
-
             implementation(libs.ktor.client.android)
 
             implementation(libs.kotlinx.coroutines.core)
@@ -57,39 +51,25 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.domain)
 
-            implementation(libs.koin.core)
-            implementation(compose.runtime)
-        }
-        iosMain.dependencies {
             implementation(libs.ktor.ktor.client.core)
             implementation(libs.ktor.ktor.client.cio)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.coroutines.core)
 
+            implementation(libs.koin.core)
+            implementation(compose.runtime)
+        }
+        iosMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.room.runtime)
 
             implementation(libs.sqlite.bundled)
         }
         desktopMain.dependencies {
-            implementation(libs.ktor.ktor.client.core)
-            implementation(libs.ktor.ktor.client.cio)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.kotlinx.coroutines.core)
-
             implementation(libs.room.runtime)
             implementation(libs.androidx.sqlite.bundled.jvm)
         }
-        wasmJsMain.dependencies {
-            implementation(libs.ktor.ktor.client.core)
-            implementation(libs.ktor.ktor.client.cio)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.kotlinx.coroutines.core)
-        }
-
     }
 
 }
