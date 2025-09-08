@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.kotlin
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -69,6 +70,14 @@ kotlin {
         desktopMain.dependencies {
             implementation(libs.room.runtime)
             implementation(libs.androidx.sqlite.bundled.jvm)
+        }
+        androidUnitTest.dependencies{
+            implementation(libs.ktor.client.mock)
+            implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.junit)
+            implementation(libs.mockk)
+            implementation(libs.androidx.testExt.junit)
+            implementation(libs.androidx.core.testing)
         }
     }
 
