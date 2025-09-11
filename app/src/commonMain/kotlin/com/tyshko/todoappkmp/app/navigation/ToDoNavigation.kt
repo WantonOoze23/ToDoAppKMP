@@ -32,10 +32,15 @@ fun ToDoNavigation(
                 }
             )
         }
-        composable("main"){
+        composable("main") {
             ToDosScreen(
                 viewModel = todosViewModel,
-                navController = navController,
+                onAddClick = {
+                    navController.navigate("todo")
+                },
+                onEditClick = { todoId ->
+                    navController.navigate("todo?todoId=$todoId")
+                }
             )
         }
         composable(
@@ -48,7 +53,7 @@ fun ToDoNavigation(
         ) {
             val toDoEditViewModel = koinViewModel<ToDoEditViewModel>()
             ViewEditScreen(
-                navController = navController,
+                onPopBackStack = { navController.popBackStack() },
                 viewModel = toDoEditViewModel
             )
         }

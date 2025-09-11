@@ -25,7 +25,7 @@ import com.tyshko.todoapp.vm.mvi.ToDoIntent
 fun ViewEditScreen(
     modifier: Modifier = Modifier,
     viewModel: ToDoEditViewModel,
-    navController: NavController
+    onPopBackStack: () -> Unit
 ) {
     val state by viewModel.toDoState.collectAsState()
     val showDialog = remember { mutableStateOf(false) }
@@ -50,7 +50,7 @@ fun ViewEditScreen(
             .statusBarsPadding()
     ) {
         IconButton(
-            onClick = {navController.popBackStack()}
+            onClick = onPopBackStack
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -108,7 +108,7 @@ fun ViewEditScreen(
                     showDialog.value = true
                 } else {
                     viewModel.onIntent(ToDoIntent.SavaToDo)
-                    navController.popBackStack()
+                    onPopBackStack()
                 }
             },
             modifier = Modifier.fillMaxWidth()

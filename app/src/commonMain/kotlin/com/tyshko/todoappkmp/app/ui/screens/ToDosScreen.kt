@@ -23,7 +23,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.tyshko.todoapp.ui.components.ToDoCard
 import com.tyshko.todoapp.vm.mvvm.ToDoViewViewModel
 import kotlinx.coroutines.launch
@@ -31,7 +30,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun ToDosScreen(
     viewModel: ToDoViewViewModel,
-    navController: NavController,
+    onAddClick: () -> Unit,
+    onEditClick: (Long) -> Unit,
 ) {
 
     val toDoList by viewModel.todos.collectAsState()
@@ -44,9 +44,7 @@ fun ToDosScreen(
         floatingActionButton = {
             FloatingActionButton(
                 containerColor = Color.Red,
-                onClick = {
-                    navController.navigate("todo")
-                },
+                onClick = onAddClick,
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -106,9 +104,7 @@ fun ToDosScreen(
                     ) {
                         ToDoCard(
                             todo = todo,
-                            onEdit = {
-                                navController.navigate("todo?todoId=${todo.id}")
-                            },
+                            onEdit = { onEditClick(todo.id) },
                             onCheckedChange = { viewModel.onCheckClick(todo) }
                         )
                     }

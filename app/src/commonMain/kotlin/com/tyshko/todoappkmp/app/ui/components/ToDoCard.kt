@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 fun ToDoCard(
     modifier: Modifier = Modifier,
     todo: ToDoModel,
-    onEdit: () -> Unit = {},
+    onEdit: (Long) -> Unit = {},
     onCheckedChange: (Boolean) -> Unit = {}
 ) {
     Card(
@@ -63,7 +63,7 @@ fun ToDoCard(
                 Icon(
                     imageVector = Icons.Default.Edit,
                     modifier = modifier.clickable {
-                        onEdit()
+                        onEdit.invoke(todo.id)
                     },
                     contentDescription = "Edit Todo",
                 )
