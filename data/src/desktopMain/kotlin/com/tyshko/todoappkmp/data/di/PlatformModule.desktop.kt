@@ -1,6 +1,5 @@
 package com.tyshko.todoappkmp.data.di
 
-import androidx.room.Room
 import androidx.room.Room.databaseBuilder
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.tyshko.data.local.ToDoDataBase

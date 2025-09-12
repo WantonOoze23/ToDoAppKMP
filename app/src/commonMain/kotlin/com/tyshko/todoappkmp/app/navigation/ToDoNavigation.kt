@@ -13,7 +13,6 @@ import com.tyshko.todoapp.ui.screens.ViewEditScreen
 import com.tyshko.todoapp.vm.mvi.ToDoEditViewModel
 import com.tyshko.todoapp.vm.mvvm.ToDoViewViewModel
 import org.koin.compose.viewmodel.koinViewModel
-import org.jetbrains.compose.resources.getString
 @Composable
 fun ToDoNavigation(
     navController: NavHostController = rememberNavController(),
