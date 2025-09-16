@@ -9,13 +9,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.*
 import com.tyshko.domain.model.ToDoModel
 import androidx.compose.material3.*
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
+import com.tyshko.todoapp.ui.theme.Completed
+import com.tyshko.todoapp.ui.theme.NotCompleted
+import com.tyshko.todoappkmp.app.ui.theme.Height
+import com.tyshko.todoappkmp.app.ui.theme.Padding
 
 
 @Composable
@@ -28,12 +30,12 @@ fun ToDoCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(Padding.simplePadding),
         colors = CardDefaults.cardColors(
-            containerColor = if (todo.isCompleted) Color(0xFFD0F0C0) else Color(0xFFD0D0D0)
+            containerColor = if (todo.isCompleted) Completed else NotCompleted
         ),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(Padding.mediumPadding)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -44,7 +46,7 @@ fun ToDoCard(
                         text = todo.title,
                         style = MaterialTheme.typography.titleMedium
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(Height.smallHeight))
                     Text(
                         text = todo.description,
                         style = MaterialTheme.typography.bodyMedium,

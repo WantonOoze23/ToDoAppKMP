@@ -7,6 +7,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.tyshko.todoappkmp.app.ui.theme.Height
+import com.tyshko.todoappkmp.app.ui.theme.Padding
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
@@ -33,7 +35,7 @@ fun LoadingScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(32.dp),
+            .padding(Padding.hugePadding),
         verticalArrangement = Arrangement.Center
     ) {
         for (row in 0..1) {
@@ -45,8 +47,8 @@ fun LoadingScreen(
                     val index = row * 2 + col
                     Box(
                         modifier = Modifier
-                            .size(150.dp)
-                            .padding(8.dp)
+                            .size(Height.giganticHeight)
+                            .padding(Padding.simplePadding)
                             .background(
                                 if (index == activeBoxIndex) Color.Red else Color.Green,
                                 shape = RoundedCornerShape(16.dp) 

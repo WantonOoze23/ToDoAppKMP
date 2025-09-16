@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tyshko.todoapp.ui.components.ToDoCard
 import com.tyshko.todoapp.vm.mvvm.ToDoViewViewModel
+import com.tyshko.todoappkmp.app.ui.theme.Padding
 import kotlinx.coroutines.launch
 
 @Composable
@@ -61,7 +62,7 @@ fun ToDosScreen(
             Text(
                 text = "IP: $userIP",
                 style = MaterialTheme.typography.labelMedium,
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(Padding.simplePadding)
             )
 
             val scope = rememberCoroutineScope()
@@ -89,14 +90,14 @@ fun ToDosScreen(
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .padding(8.dp)
+                                    .padding(Padding.simplePadding)
                                     .background(Color.Red, shape = RoundedCornerShape(16.dp)),
                                 contentAlignment = Alignment.CenterEnd
                             ) {
                                 Text(
                                     text = "Delete",
                                     color = Color.White,
-                                    modifier = Modifier.padding(end = 24.dp)
+                                    modifier = Modifier.padding(end = Padding.mediumPadding)
                                 )
                             }
                         },

@@ -6,7 +6,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,9 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.*
-import androidx.navigation.NavController
 import com.tyshko.todoapp.vm.mvi.ToDoEditViewModel
 import com.tyshko.todoapp.vm.mvi.ToDoIntent
+import com.tyshko.todoappkmp.app.ui.theme.Height
+import com.tyshko.todoappkmp.app.ui.theme.Padding
 
 @Composable
 fun ViewEditScreen(
@@ -46,7 +46,7 @@ fun ViewEditScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(Padding.mediumPadding)
             .statusBarsPadding()
     ) {
         IconButton(
@@ -65,7 +65,7 @@ fun ViewEditScreen(
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(Height.mediumHeight))
 
         OutlinedTextField(
             value = state.description,
@@ -73,11 +73,11 @@ fun ViewEditScreen(
             label = { Text("Description") },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(150.dp),
+                .height(Height.giganticHeight),
             maxLines = 5
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(Height.mediumHeight))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -100,7 +100,7 @@ fun ViewEditScreen(
             )
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(Height.semiHugeHeight))
 
         Button(
             onClick = {

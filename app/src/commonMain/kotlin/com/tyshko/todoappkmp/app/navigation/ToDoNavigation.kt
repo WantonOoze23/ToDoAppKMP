@@ -12,6 +12,7 @@ import com.tyshko.todoapp.ui.screens.ToDosScreen
 import com.tyshko.todoapp.ui.screens.ViewEditScreen
 import com.tyshko.todoapp.vm.mvi.ToDoEditViewModel
 import com.tyshko.todoapp.vm.mvvm.ToDoViewViewModel
+import com.tyshko.todoappkmp.app.navigation.Screen
 import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun ToDoNavigation(
@@ -20,30 +21,30 @@ fun ToDoNavigation(
     val todosViewModel = koinViewModel<ToDoViewViewModel>()
     NavHost(
         navController = navController,
-        startDestination = "loading"
+        startDestination = Screen.Loading.route
     ) {
-        composable("loading"){
+        composable(Screen.Loading.route) {
             LoadingScreen(
                 onFinish = {
-                    navController.navigate("main") {
-                        popUpTo("loading") { inclusive = true }
+                    navController.navigate(Screen.Main.route) {
+                        popUpTo(Screen.Loading.route) { inclusive = true }
                     }
                 }
             )
         }
-        composable("main") {
+        composable(Screen.Main.route) {
             ToDosScreen(
                 viewModel = todosViewModel,
                 onAddClick = {
-                    navController.navigate("todo")
+                    navController.navigate(Screen.TodoViewEdit.route)
                 },
                 onEditClick = { todoId ->
-                    navController.navigate("todo?todoId=$todoId")
+                    navController.navigate(Screen.TodoViewEdit.createRoute(todoId))
                 }
             )
         }
         composable(
-            "todo?todoId={todoId}",
+            Screen.TodoViewEdit.route,
             arguments = listOf(navArgument("todoId") {
                 type = NavType.StringType
                 nullable = true

@@ -39,7 +39,7 @@ class ToDoViewViewModelTest {
         toDoViewViewModel = ToDoViewViewModel(repository)
         advanceUntilIdle()
 
-        assertEquals("11.12.20.10", toDoViewViewModel.publicIP.value)
+        assertEquals("12.34.56.78", toDoViewViewModel.publicIP.value)
         assertEquals(todos, toDoViewViewModel.todos.value)
     }
 
@@ -48,7 +48,7 @@ class ToDoViewViewModelTest {
         toDoViewViewModel = ToDoViewViewModel(repository)
         advanceUntilIdle()
 
-        assertEquals("11.12.20.10", toDoViewViewModel.publicIP.value)
+        assertEquals("12.34.56.78", toDoViewViewModel.publicIP.value)
         assertEquals(emptyList<ToDoModel>(), toDoViewViewModel.todos.value)
     }
 
