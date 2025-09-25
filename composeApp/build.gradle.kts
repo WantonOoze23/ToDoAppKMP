@@ -30,8 +30,8 @@ kotlin {
             isStatic = true
         }
     }
-    
-    jvm()
+
+    jvm("desktop")
     
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
@@ -54,11 +54,25 @@ kotlin {
     }
     
     sourceSets {
+        val desktopMain by getting
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            implementation(libs.koin.androidx.compose)
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
+            implementation(projects.app)
+            implementation(projects.data)
+
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.lifecycle.viewmodel)
+            implementation(libs.navigation.compose)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -71,11 +85,15 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
-        jvmMain.dependencies {
+        desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
         }
     }
+}
+
+configurations.all {
+    exclude(group = "com.intellij", module = "annotations")
 }
 
 android {
